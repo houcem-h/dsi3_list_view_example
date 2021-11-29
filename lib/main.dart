@@ -73,7 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   SnackBar(content: Text("${item.brand} ${item.model} deleted !"))
                 );
               },
-              child: child);
+              child: ListTile(
+                title: Text(item.model),
+              ),
+          );
         }),
     );
   }
