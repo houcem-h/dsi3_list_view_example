@@ -102,6 +102,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   item.brand,
                   textAlign: TextAlign.center,
                 ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: Text(
+                            "${item.brand} ${item.model}",
+                            style: const TextStyle(color: Colors.cyan),
+                          ),
+                          content: item.image,
+                        );
+                      }
+                  );
+                },
               ),
           );
         }),
