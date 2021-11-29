@@ -41,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.builder(
+      body: ListView.separated(
+        separatorBuilder: (context, index) => const Divider(color: Colors.cyan),
         itemCount: _cars.length,
         itemBuilder: (context, index){
           final item = _cars[index];
