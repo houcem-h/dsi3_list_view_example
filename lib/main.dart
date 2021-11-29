@@ -55,16 +55,26 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
-      ),
+      body: ListView.builder(
+        itemCount: _cars.length,
+        itemBuilder: (context, index){
+          final item = _cars[index];
+          return Dismissible(
+              key: Key(item.model),
+              background: Container(
+                child: const Icon(Icons.delete, size: 40, color: Colors.white),
+                color: Colors.cyan,
+              ),
+              onDismissed: (direction) {
+                setState(() {
+                  _cars.removeAt(index);
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("${item.brand} ${item.model} deleted !"))
+                );
+              },
+              child: child);
+        }),
     );
   }
 }
