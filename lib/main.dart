@@ -41,8 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.separated(
-        separatorBuilder: (context, index) => const Divider(color: Colors.cyan),
+      body: ListView.builder(
         itemCount: _cars.length,
         itemBuilder: (context, index){
           final item = _cars[index];
@@ -60,35 +59,37 @@ class _MyHomePageState extends State<MyHomePage> {
                   SnackBar(content: Text("${item.brand} ${item.model} deleted !"))
                 );
               },
-              child: ListTile(
-                title: Text(
-                  item.model,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.cyan,
-                      fontSize: 20
+              child: Card(
+                child: ListTile(
+                  title: Text(
+                    item.model,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.cyan,
+                        fontSize: 20
+                    ),
                   ),
-                ),
-                subtitle: Text(
-                  item.brand,
-                  textAlign: TextAlign.center,
-                ),
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.white,
-                          title: Text(
-                            "${item.brand} ${item.model}",
-                            style: const TextStyle(color: Colors.cyan),
-                          ),
-                          content: item.image,
-                        );
-                      }
-                  );
-                },
+                  subtitle: Text(
+                    item.brand,
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.white,
+                            title: Text(
+                              "${item.brand} ${item.model}",
+                              style: const TextStyle(color: Colors.cyan),
+                            ),
+                            content: item.image,
+                          );
+                        }
+                    );
+                  },
+                )
               ),
           );
         }),
